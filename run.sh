@@ -14,6 +14,12 @@ function _set_vars_env() {
   export USER_GID
 }
 
+# Install Meslo nerd font
+function _install_fonts() {
+  mkdir -p ~/.local/share/fonts/NerdFonts
+  cp -f conf/fonts/MesloLGMNerdFont-Regular.ttf ~/.local/share/fonts/NerdFonts/MesloLGMNerdFont-Regular.ttf
+}
+
 # Build the docker arguments
 _build_docker_args() {
   build_args="--build-arg http_proxy=\"${http_proxy}\" \
@@ -49,6 +55,7 @@ function _build_docker_toolbox() {
 # Build toolboox
 function build_toolbox() {
   _set_vars_env
+  _install_fonts
   _build_docker_toolbox "$1"
 }
 
